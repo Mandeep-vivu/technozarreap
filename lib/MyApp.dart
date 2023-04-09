@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:technozarre/svgfbg.dart';
+
 
 import 'eventdetail.dart';
 
@@ -66,7 +68,6 @@ class _MyAppState extends State<MyApp> {
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
   ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,65 +76,85 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('College Fest'),
         ),
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // Wrap the body with a Builder widget to access a context that has a MediaQuery widget ancestor
+        body: Builder(
+          builder: (BuildContext context) {
+            return Stack(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedDate = "29 April";
-                    });
-                  },
-                  child: const Text("29 April"),
+                Align(
+                  alignment: Alignment.center,
+                  child: CustomPaint(
+                    painter: MyPainter(),
+                    size: Size(
+                      MediaQuery.of(context).size.width,
+                      MediaQuery.of(context).size.height * 0.45,
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedDate = "30 April";
-                    });
-                  },
-                  child: const Text("30 April"),
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: selectedDate == "29 April"
-                    ? events29April.length
-                    : events30April.length,
-                itemBuilder: (context, index) {
-                  Event event = selectedDate == "29 April"
-                      ? events29April[index]
-                      : events30April[index];
-
-                  return Card(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EventDetailsPage(event),
-                          ),
-                        );
-                      },
-                      child: ListTile(
-                        title: Text(event.title),
-                        subtitle: Text(event.time),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(event.posterUrl),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedDate = "29 April";
+                            });
+                          },
+                          child: const Text("29 April"),
                         ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedDate = "30 April";
+                            });
+                          },
+                          child: const Text("30 April"),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: selectedDate == "29 April"
+                            ? events29April.length
+                            : events30April.length,
+                        itemBuilder: (context, index) {
+                          Event event = selectedDate == "29 April"
+                              ? events29April[index]
+                              : events30April[index];
+
+                          return Card(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        EventDetailsPage(event),
+                                  ),
+                                );
+                              },
+                              child: ListTile(
+                                title: Text(event.title),
+                                subtitle: Text(event.time),
+                                leading: CircleAvatar(
+                                  backgroundImage:
+                                  NetworkImage(event.posterUrl),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-          ],
+                  ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
-

@@ -1,0 +1,15 @@
+<svg id="peaks" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#902ac8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3d25c7;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#3d25c7;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#07135a;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <path id="p11" d="M0 300L137 280L137 200L274 280L274 300L411 320L411 350L549 280L549 300L686 250L686 275L823 275L823 300L960 280L960 320L960 541L823 541L823 541L686 541L686 541L549 541L549 541L411 541L411 541L274 541L274 541L137 541L137 541L0 541Z" fill="url(#grad1)"></path>
+    <path id="p12" d="M0 370L137 360L137 390L274 340L274 400L411 380L411 330L549 350L549 370L686 390L686 375L823 340L823 380L960 330L960 370L960 541L823 541L823 541L686 541L686 541L549 541L549 541L411 541L411 541L274 541L274 541L137 541L137 541L0 541Z" fill="url(#grad2)"></path>
+    <path id="p13" d="M0 470L137 450L137 420L274 420L274 410L411 440L411 420L549 460L549 430L686 400L686 430L823 410L823 380L960 410L960 430L960 541L823 541L823 541L686 541L686 541L549 541L549 541L411 541L411 541L274 541L274 541L137 541L137 541L0 541Z" fill="#262699"></path>
+</svg>
