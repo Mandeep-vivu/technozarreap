@@ -31,6 +31,7 @@ class EventDetailsPage extends StatelessWidget {
 }
 
 class Event {
+
   final String title;
   final String posterUrl;
   final String time;

@@ -14,7 +14,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String selectedDate = "29 April"; //default selected date
-
+  bool _isPressed = false;
+  bool _isPressed1 = false;
   List<Event> events29April = [
     Event(
       title: "Event 1",
@@ -72,25 +73,24 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'College Fest',
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('College Fest'),
-        ),
         // Wrap the body with a Builder widget to access a context that has a MediaQuery widget ancestor
+
         body: Builder(
           builder: (BuildContext context) {
-            return Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: CustomPaint(
-                    painter: MyPainter(),
-                    size: Size(
-                      MediaQuery.of(context).size.width,
-                      MediaQuery.of(context).size.height * 0.45,
-                    ),
-                  ),
+            return Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/bg.png',),
+                  fit: BoxFit.cover,
                 ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(25.0),
+              child:
+            Stack(
+              children: [
                 Column(
                   children: [
                     Row(
@@ -100,16 +100,52 @@ class _MyAppState extends State<MyApp> {
                           onPressed: () {
                             setState(() {
                               selectedDate = "29 April";
+                              _isPressed = !_isPressed;
                             });
                           },
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all<Size>(Size(30.0, 10.0)),
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0)),
+                            elevation: MaterialStateProperty.all<double>(5.0),
+                            shadowColor: MaterialStateProperty.all<Color>(Colors.black),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(_isPressed ? Colors.green : Colors.blue,),
+                          ),
                           child: const Text("29 April"),
                         ),
                         ElevatedButton(
                           onPressed: () {
                             setState(() {
                               selectedDate = "30 April";
+                              _isPressed1 = !_isPressed1;
+                              
                             });
                           },
+                          style: ButtonStyle(
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                            overlayColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                            textStyle: MaterialStateProperty.all<TextStyle>(
+                              TextStyle(color: Colors.white),
+                            ),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            minimumSize: MaterialStateProperty.all<Size>(Size(30.0, 10.0)),
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0)),
+                            elevation: MaterialStateProperty.all<double>(5.0),
+                            shadowColor: MaterialStateProperty.all<Color>(Colors.grey),
+
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(_isPressed1 ? Colors.green : Colors.blue,),
+                          ),
                           child: const Text("30 April"),
                         ),
                       ],
@@ -125,33 +161,41 @@ class _MyAppState extends State<MyApp> {
                               : events30April[index];
 
                           return Card(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        EventDetailsPage(event),
-                                  ),
-                                );
-                              },
-                              child: ListTile(
+                            child: ExpansionTile(
+                              title: ListTile(
                                 title: Text(event.title),
                                 subtitle: Text(event.time),
                                 leading: CircleAvatar(
-                                  backgroundImage:
-                                  NetworkImage(event.posterUrl),
+                                  backgroundImage: NetworkImage(event.posterUrl),
                                 ),
                               ),
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Image.network(event.posterUrl),
+                                      const SizedBox(height: 40.0),
+                                      Text(event.title, style: Theme.of(context).textTheme.titleLarge),
+                                      Text(event.time, style: Theme.of(context).textTheme.titleMedium),
+                                      Text(event.venue, style: Theme.of(context).textTheme.titleMedium),
+                                      const SizedBox(height: 40.0),
+                                      Text(event.description),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           );
+
                         },
                       ),
                     ),
                   ],
                 ),
               ],
-            );
+            )));
           },
         ),
       ),
