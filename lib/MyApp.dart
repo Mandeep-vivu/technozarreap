@@ -86,8 +86,7 @@ class _MyAppState extends State<MyApp> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsets.all(25.0),
+              child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 80.0),
               child:
             Stack(
               children: [
@@ -104,9 +103,9 @@ class _MyAppState extends State<MyApp> {
                             });
                           },
                           style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all<Size>(Size(30.0, 10.0)),
+                            minimumSize: MaterialStateProperty.all<Size>(const Size(20.0, 10.0)),
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0)),
+                                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0)),
                             elevation: MaterialStateProperty.all<double>(5.0),
                             shadowColor: MaterialStateProperty.all<Color>(Colors.black),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -130,12 +129,12 @@ class _MyAppState extends State<MyApp> {
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                             overlayColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
                             textStyle: MaterialStateProperty.all<TextStyle>(
-                              TextStyle(color: Colors.white),
+                              const TextStyle(color: Colors.white),
                             ),
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            minimumSize: MaterialStateProperty.all<Size>(Size(30.0, 10.0)),
+                            minimumSize: MaterialStateProperty.all<Size>(const Size(20.0, 10.0)),
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0)),
+                                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0)),
                             elevation: MaterialStateProperty.all<double>(5.0),
                             shadowColor: MaterialStateProperty.all<Color>(Colors.grey),
 
@@ -149,8 +148,11 @@ class _MyAppState extends State<MyApp> {
                           child: const Text("30 April"),
                         ),
                       ],
+
                     ),
+
                     Expanded(
+
                       child: ListView.builder(
                         itemCount: selectedDate == "29 April"
                             ? events29April.length
@@ -161,7 +163,18 @@ class _MyAppState extends State<MyApp> {
                               : events30April[index];
 
                           return Card(
+                            elevation: 5.0,
+
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: const BorderSide(
+                                color: Colors.purple,
+                                width: 2.0,
+                              ),
+                            ),
                             child: ExpansionTile(
+                              tilePadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 1.0),
                               title: ListTile(
                                 title: Text(event.title),
                                 subtitle: Text(event.time),
@@ -170,18 +183,40 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               children: <Widget>[
+
                                 Padding(
-                                  padding: const EdgeInsets.all(16.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Image.network(event.posterUrl),
-                                      const SizedBox(height: 40.0),
+                                      Image.network(
+                                        event.posterUrl,
+                                        width: double.infinity,
+                                        height: 200.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      const SizedBox(height: 20.0),
                                       Text(event.title, style: Theme.of(context).textTheme.titleLarge),
-                                      Text(event.time, style: Theme.of(context).textTheme.titleMedium),
-                                      Text(event.venue, style: Theme.of(context).textTheme.titleMedium),
-                                      const SizedBox(height: 40.0),
+                                      const SizedBox(height: 10.0),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.schedule, size: 16.0, color: Colors.grey[700]),
+                                          const SizedBox(width: 4.0),
+                                          Text(event.time, style: Theme.of(context).textTheme.titleMedium),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4.0),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.place, size: 16.0, color: Colors.grey[700]),
+                                          const SizedBox(width: 4.0),
+                                          Text(event.venue, style: Theme.of(context).textTheme.titleMedium),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 20.0),
                                       Text(event.description),
+                                      const Padding(padding: EdgeInsets.all(5.0)),
+
                                     ],
                                   ),
                                 ),
@@ -189,9 +224,12 @@ class _MyAppState extends State<MyApp> {
                             ),
                           );
 
+
                         },
                       ),
+
                     ),
+
                   ],
                 ),
               ],
