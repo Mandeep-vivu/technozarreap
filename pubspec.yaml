@@ -64,6 +64,14 @@ flutter:
     - assets/bg.png
     - assets/favicon.png
     - assets/bgg1.gif
+    - assets/posters/4.png
+    - assets/posters/BordM.png
+    - assets/posters/codewar.png
+    - assets/posters/cultural.png
+    - assets/posters/Debate.png
+    - assets/posters/hcka.png
+    - assets/posters/techq.png
+    - assets/posters/Treasure.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
