@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:technozarre/svgfbg.dart';
 
+import 'package:video_player/video_player.dart';
 import 'eventdetail.dart';
+import 'regisform.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -14,75 +15,96 @@ class _MyAppState extends State<MyApp> {
   String selectedDate = "29 April"; //default selected date
   bool _isPressed = false;
   bool _isPressed1 = true;
-  List<Event> events29April = [
+  bool _isPressed2 = true;
+
+  late VideoPlayerController _videoPlayerController;
+
+
+  List<Event> events4May = [
+    Event(
+      title: "Hackathon",
+      posterUrl: "assets/posters/hcka.png",
+      time: "11:00 AM - 1:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ),
     Event(
       title: "Board Meeting",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/codewar.png",
       time: "12:00 PM - 2:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    ),
-    Event(
-      title: "MUN",
-      posterUrl: "assets/posters/codewar.png",
-      time: "2:00 PM - 3:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    ),
-    Event(
-      title: "Fibre Structure",
-      posterUrl: "assets/posters/techq.png",
-      time: "12:00 PM - 4:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ),
-    Event(
-      title: "PPT Competition",
-      posterUrl: "assets/favicon.png",
-      time: "04:00 pM - 06:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    ),
-    Event(
-      title: "Hackathon",
-      posterUrl: "https://picsum.photos/201",
-      time: "11:00 PM - 3:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    ),
-    Event(
-      title: "Auto CAD",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
       title: "Code War",
+      posterUrl: "assets/posters/techq.png",
+      time: "1:00 PM - 3:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Masala Allocation",
+      posterUrl: "assets/favicon.png",
+      time: "03:00 PM - 06:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ),
+    Event(
+      title: "DJ Night",
+      posterUrl: "assets/posters/hcka.png",
+      time: "07:00 PM - 10:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    ),
+    Event(
+      title: "Anime Quiz",
+      posterUrl: "assets/posters/hcka.png",
+      time: "11:00 AM - 01:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Fibre Structure",
       posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      time: "12:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
     Event(
-      title: "Masala Startup",
-      posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      title: "MUN",
+      posterUrl: "assets/posters/hcka.png",
+      time: "02:00 PM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
     Event(
-      title: "Animie Quiz",
+      title: "Digital Illustration",
+      posterUrl: "assets/posters/hcka.png",
+      time: "02:00 PM - 04:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+    ),
+    Event(
+      title: "Auto CAD",
+      posterUrl: "assets/posters/hcka.png",
+      time: "03:00 PM - 05:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+    ),
+    Event(
+      title: "PPT Competition",
       posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      time: "04:00 PM - 06:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
@@ -90,146 +112,130 @@ class _MyAppState extends State<MyApp> {
     Event(
       title: "Photography Competition",
       posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
-    ),
-    Event(
-      title: "DJ Show",
-      posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
-    ),
-    Event(
-      title: "Digital Illustration",
-      posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      time: "06:00 PM - 07:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
   ];
 
-  List<Event> events30April = [
+  List<Event> events05May = [
     Event(
-      title: "MUN",
-      posterUrl: "https://picsum.photos/203",
-      time: "11:00 AM - 1:00 PM",
+      title: "Treasure Hunt",
+      posterUrl: "assets/posters/hcka.png",
+      time: "09:00 AM - 11:00 AM",
       venue: "TIT&S Bhiwani",
       description:
       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
     ),
     Event(
-      title: "Fiber Structure",
-      posterUrl: "https://picsum.photos/204",
-      time: "2:00 PM - 4:00 PM",
+      title: "Structural Engineering",
+      posterUrl: "assets/posters/hcka.png",
+      time: "10:00 AM - 12:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
     ),
     Event(
-      title: "Debate",
-      posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      title: "Press Release",
+      posterUrl: "assets/posters/hcka.png",
+      time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
     Event(
-      title: "Press Release",
-      posterUrl: "https://picsum.photos/200",
-      time: "10:00 AM - 12:00 PM",
+      title: "Anime Quiz",
+      posterUrl: "assets/posters/hcka.png",
+      time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     ),
     Event(
-      title: "Hackathon",
-      posterUrl: "https://picsum.photos/205",
-      time: "5:00 PM - 7:00 PM",
+      title: "Tech Quiz",
+      posterUrl: "assets/posters/hcka.png",
+      time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     ),
     Event(
-      title: "Robo War",
-      posterUrl: "https://picsum.photos/201",
+      title: "Code War",
+      posterUrl: "assets/posters/hcka.png",
       time: "1:00 PM - 3:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     ),
     Event(
-      title: "Tech Quiz",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ),
-    Event(
-      title: "Code War",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ),
-    Event(
-      title: "Animie Quiz",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ),
-    Event(
-      title: "QR ka War",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
-      venue: "TIT&S Bhiwani",
-      description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ),
-    Event(
-      title: "Bridge Making",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      title: "Robo War",
+      posterUrl: "assets/posters/hcka.png",
+      time: "04:00 PM - 05:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
       title: "Fashion Show",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      posterUrl: "assets/posters/hcka.png",
+      time: "05:00 PM - 08:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
       title: "Cultural Night",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      posterUrl: "assets/posters/hcka.png",
+      time: "05:00 PM - 08:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
-      title: "Pun War",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      title: "MUN",
+      posterUrl: "assets/posters/hcka.png",
+      time: "09:00 AM - 11:00 AM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Hackathon",
+      posterUrl: "assets/posters/hcka.png",
+      time: "10:00 AM - 12:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Debate",
+      posterUrl: "assets/posters/hcka.png",
+      time: "10:00 AM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
       title: "Digital Handicraft",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      posterUrl: "assets/posters/hcka.png",
+      time: "12:00 PM - 02:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Fiber Structure",
+      posterUrl: "assets/posters/hcka.png",
+      time: "12:00 PM - 04:00 PM",
+      venue: "TIT&S Bhiwani",
+      description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ),
+    Event(
+      title: "Pun War",
+      posterUrl: "assets/posters/hcka.png",
+      time: "01:00 PM - 02:00 PM",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
@@ -239,54 +245,73 @@ class _MyAppState extends State<MyApp> {
   //both
   List<Event> eventsBothDays = [
     Event(
-      title: "Board Meeting",
+      title: "Online Gaming",
       posterUrl: "assets/posters/hcka.png",
-      time: "12:00 PM - 2:00 PM",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     ),
     Event(
-      title: "MUN",
+      title: "Offline Gaming",
       posterUrl: "assets/posters/codewar.png",
-      time: "2:00 PM - 3:00 PM",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     ),
     Event(
-      title: "Fibre Structure",
+      title: "Human Ludo",
       posterUrl: "assets/posters/techq.png",
-      time: "12:00 PM - 4:00 PM",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
     Event(
-      title: "PPT Competition",
+      title: "Open Mic",
       posterUrl: "assets/favicon.png",
-      time: "04:00 pM - 06:00 PM",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     ),
     Event(
-      title: "Hackathon",
-      posterUrl: "https://picsum.photos/201",
-      time: "11:00 PM - 3:00 PM",
+      title: "Exhibition(Electrical)",
+      posterUrl: "assets/posters/hcka.png",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     ),
     Event(
-      title: "Auto CAD",
-      posterUrl: "https://picsum.photos/202",
-      time: "4:00 PM - 6:00 PM",
+      title: "Exhibition(Textile)",
+      posterUrl: "assets/posters/hcka.png",
+      time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     ),
   ];
+
+
+  @override
+  void initState() {
+    super.initState();
+    _videoPlayerController = VideoPlayerController.asset('assets/iii.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+        _videoPlayerController.play();
+        _videoPlayerController.setLooping(true);
+      });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _videoPlayerController.dispose();
+  }
+  Map<int, bool> addedToCartMap = {};
 
   @override
   Widget build(BuildContext context) {
@@ -297,6 +322,7 @@ class _MyAppState extends State<MyApp> {
         // Wrap the body with a Builder widget to access a context that has a MediaQuery widget ancestor
         body: Builder(
           builder: (BuildContext context) {
+            final Size screenSize = MediaQuery.of(context).size;
             return Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -307,244 +333,397 @@ class _MyAppState extends State<MyApp> {
                     opacity: 1,
                   ),
                 ),
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 70.0),
-                    child: Stack(
-                      children: [
-
-                        Column(
-
+                child: FractionallySizedBox(
+                    widthFactor: 1,
+                    heightFactor: 1,
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenSize.width * 0.05,
+                          vertical: screenSize.height * 0.05,
+                        ),
+                        child: Stack(
                           children: [
+                            SizedBox.expand(
+                              child: FittedBox(
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                fit: BoxFit.fitWidth,
+                                child: SizedBox(
+                                  width: _videoPlayerController.value.size.width ?? 0,
+                                  height: _videoPlayerController.value.size.height ?? 0,
+                                  child: VideoPlayer(_videoPlayerController),
+                                ),
+                              ),
+                            ),
+                            Column(
                               children: [
-                                SizedBox(height: 50.0),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      selectedDate = "29 April";
-                                      _isPressed = !_isPressed;
-                                      _isPressed1 = !_isPressed;
-                                    });
-                                  },
-                                  style: ButtonStyle(
-                                    minimumSize:
-                                    MaterialStateProperty.all<Size>(
-                                        const Size(20.0, 10.0)),
-                                    padding: MaterialStateProperty.all<
-                                        EdgeInsetsGeometry>(
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 12.0)),
-                                    elevation:
-                                    MaterialStateProperty.all<double>(5.0),
-                                    shadowColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.black),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(18.0),
-                                      ),
-                                    ),
-                                    backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                      _isPressed
-                                          ? Colors.purpleAccent
-                                          : Colors.blue,
-                                    ),
-                                  ),
-                                  child: const Text("29 April"),
+                                SizedBox(height: 10.0),
+                                Expanded(
+                                  child: ListView.builder(
+                                    itemCount: selectedDate == "04 May"
+                                        ? events4May.length
+                                        : selectedDate == "05 May"
+                                        ? events05May.length
+                                        : eventsBothDays.length,
+                                    itemBuilder: (context, index) {
+                                      Event event = selectedDate == "04 May"
+                                          ? events4May[index]
+                                          : selectedDate == "05 May"
+                                          ? events05May[index]
+                                          : eventsBothDays[index];
+                                      bool isAddedToCart =
+                                          addedToCartMap.containsKey(index) &&
+                                              addedToCartMap[index] == true;
 
-                                ),
-
-                                ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      selectedDate = "30 April";
-                                      _isPressed1 = !_isPressed1;
-                                      _isPressed = !_isPressed1;
-                                    });
-                                  },
-                                  style: ButtonStyle(
-                                    foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.white),
-                                    overlayColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.lightBlueAccent),
-                                    textStyle:
-                                    MaterialStateProperty.all<TextStyle>(
-                                      const TextStyle(color: Colors.white),
-                                    ),
-                                    tapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                    minimumSize:
-                                    MaterialStateProperty.all<Size>(
-                                        const Size(20.0, 10.0)),
-                                    padding: MaterialStateProperty.all<
-                                        EdgeInsetsGeometry>(
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 12.0)),
-                                    elevation:
-                                    MaterialStateProperty.all<double>(5.0),
-                                    shadowColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(18.0),
-                                      ),
-                                    ),
-                                    backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                      _isPressed1
-                                          ? Colors.purpleAccent
-                                          : Colors.blue,
-                                    ),
+                                      return Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0.0, vertical: 5.0),
+                                          child: Card(
+                                            elevation: 5.0,
+                                            color: Colors.black12,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(18.0),
+                                              side: const BorderSide(
+                                                color: Colors.purple,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: ExpansionTile(
+                                              tilePadding:
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 8.0,
+                                                  vertical: 0.0),
+                                              title: ListTile(
+                                                title: Text(
+                                                  event.title,
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                subtitle: Text(
+                                                  event.time,
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                leading: CircleAvatar(
+                                                  backgroundImage: AssetImage(
+                                                      event.posterUrl),
+                                                ),
+                                              ),
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      15.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Image.asset(
+                                                        event.posterUrl,
+                                                        width: double.infinity,
+                                                        height: 350.0,
+                                                        fit: BoxFit.fitWidth,
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 20.0),
+                                                      Text(
+                                                        event.title,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleLarge
+                                                            ?.copyWith(
+                                                          color:
+                                                          Colors.white,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10.0),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.schedule,
+                                                              size: 16.0,
+                                                              color: Colors
+                                                                  .purple),
+                                                          const SizedBox(
+                                                              width: 4.0),
+                                                          Text(
+                                                            event.time,
+                                                            style: Theme.of(
+                                                                context)
+                                                                .textTheme
+                                                                .titleMedium
+                                                                ?.copyWith(
+                                                              color: Colors
+                                                                  .white,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 4.0),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.place,
+                                                              size: 16.0,
+                                                              color: Colors
+                                                                  .purple),
+                                                          const SizedBox(
+                                                              width: 4.0),
+                                                          Text(
+                                                            event.venue,
+                                                            style: Theme.of(
+                                                                context)
+                                                                .textTheme
+                                                                .titleMedium
+                                                                ?.copyWith(
+                                                              color: Colors
+                                                                  .white,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 20.0),
+                                                      Text(
+                                                        event.description,
+                                                        style: const TextStyle(
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      const Padding(
+                                                          padding:
+                                                          EdgeInsets.all(
+                                                              5.0)),
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          gradient:
+                                                          LinearGradient(
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                            colors: [
+                                                              isAddedToCart
+                                                                  ? Colors.purple[
+                                                              400] ??
+                                                                  Colors
+                                                                      .purple
+                                                                  : Colors.blue[
+                                                              400] ??
+                                                                  Colors
+                                                                      .blue,
+                                                              isAddedToCart
+                                                                  ? Colors.purple[
+                                                              700] ??
+                                                                  Colors
+                                                                      .purple
+                                                                  : Colors.blue[
+                                                              700] ??
+                                                                  Colors
+                                                                      .blue,
+                                                            ],
+                                                          ),
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              15.0),
+                                                        ),
+                                                        child: ElevatedButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              if (isAddedToCart) {
+                                                                addedToCartMap
+                                                                    .remove(
+                                                                    index);
+                                                              } else {
+                                                                addedToCartMap[
+                                                                index] =
+                                                                true;
+                                                              }
+                                                            });
+                                                          },
+                                                          child: Text(
+                                                            isAddedToCart
+                                                                ? 'Un-register'
+                                                                : 'Add to Register',
+                                                          ),
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            primary: Colors
+                                                                .transparent, // This removes the default button background
+                                                            elevation:
+                                                            0, // This removes the default button shadow
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ));
+                                    },
                                   ),
-                                  child: const Text("30 April"),
                                 ),
+                                Padding(padding: EdgeInsets.all(15.0)),
                               ],
                             ),
-                            SizedBox(height: 10.0),
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: selectedDate == "29 April"
-                                    ? events29April.length
-                                    : events30April.length,
-                                itemBuilder: (context, index) {
-                                  Event event = selectedDate == "29 April"
-                                      ? events29April[index]
-                                      : events30April[index];
-
-                                  return Container(
-                                    padding: const EdgeInsets.symmetric(
-                                          horizontal: 0.0, vertical: 5.0),
-                                  child:
-                                    Card(
-                                    elevation: 5.0,
-                                    color: Colors.black12,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: const BorderSide(
-                                        color: Colors.purple,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: ExpansionTile(
-                                      tilePadding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0, vertical: 0.0),
-                                      title: ListTile(
-                                        title: Text(
-                                          event.title,
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        subtitle: Text(
-                                          event.time,
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        leading: CircleAvatar(
-                                          backgroundImage:
-                                          AssetImage(event.posterUrl),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        selectedDate = "04 May";
+                                        _isPressed = !_isPressed;
+                                        _isPressed1 = !_isPressed;
+                                        _isPressed2 = !_isPressed;
+                                      });
+                                    },
+                                    style: ButtonStyle(
+                                      minimumSize:
+                                      MaterialStateProperty.all<Size>(
+                                          const Size(20.0, 10.0)),
+                                      padding: MaterialStateProperty.all<
+                                          EdgeInsetsGeometry>(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 20.0,
+                                              vertical: 12.0)),
+                                      elevation:
+                                      MaterialStateProperty.all<double>(
+                                          5.0),
+                                      shadowColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.black),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(18.0),
                                         ),
                                       ),
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                event.posterUrl,
-                                                width: double.infinity,
-                                                height: 350.0,
-                                                fit: BoxFit.fitWidth,
-                                              ),
-                                              const SizedBox(height: 20.0),
-                                              Text(
-                                                event.title,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleLarge
-                                                    ?.copyWith(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 10.0),
-                                              Row(
-                                                children: [
-                                                  Icon(Icons.schedule,
-                                                      size: 16.0,
-                                                      color: Colors.purple),
-                                                  const SizedBox(width: 4.0),
-                                                  Text(
-                                                    event.title,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium
-                                                        ?.copyWith(
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              Row(
-                                                children: [
-                                                  Icon(Icons.place,
-                                                      size: 16.0,
-                                                      color: Colors.purple),
-                                                  const SizedBox(width: 4.0),
-                                                  Text(
-                                                    event.title,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium
-                                                        ?.copyWith(
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(height: 20.0),
-                                              Text(
-                                                event.description,
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              const Padding(
-                                                  padding: EdgeInsets.all(5.0)),
-                                            ],
-
-                                          ),
-
-                                        ),
-
-                                      ],
-
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                        _isPressed
+                                            ? Colors.purpleAccent
+                                            : Colors.blue,
+                                      ),
                                     ),
-                                    )
-                                  );
-
-                                },
-
+                                    child: const Text("04 May"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        selectedDate = "05 May";
+                                        _isPressed1 = !_isPressed1;
+                                        _isPressed = !_isPressed1;
+                                        _isPressed2 = !_isPressed1;
+                                      });
+                                    },
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                      overlayColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.lightBlueAccent),
+                                      textStyle:
+                                      MaterialStateProperty.all<TextStyle>(
+                                        const TextStyle(color: Colors.white),
+                                      ),
+                                      tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                      minimumSize:
+                                      MaterialStateProperty.all<Size>(
+                                          const Size(20.0, 10.0)),
+                                      padding: MaterialStateProperty.all<
+                                          EdgeInsetsGeometry>(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 20.0,
+                                              vertical: 12.0)),
+                                      elevation:
+                                      MaterialStateProperty.all<double>(
+                                          5.0),
+                                      shadowColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.grey),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(18.0),
+                                        ),
+                                      ),
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                        _isPressed1
+                                            ? Colors.purpleAccent
+                                            : Colors.blue,
+                                      ),
+                                    ),
+                                    child: const Text("05 May"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        selectedDate = "Both Days";
+                                        _isPressed2 = !_isPressed2;
+                                        _isPressed = !_isPressed2;
+                                        _isPressed1 = !_isPressed2;
+                                      });
+                                    },
+                                    style: ButtonStyle(
+                                      minimumSize:
+                                      MaterialStateProperty.all<Size>(
+                                          const Size(20.0, 10.0)),
+                                      padding: MaterialStateProperty.all<
+                                          EdgeInsetsGeometry>(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 20.0,
+                                              vertical: 12.0)),
+                                      elevation:
+                                      MaterialStateProperty.all<double>(
+                                          5.0),
+                                      shadowColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.black),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(18.0),
+                                        ),
+                                      ),
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                        selectedDate == "Both Days"
+                                            ? Colors.purpleAccent
+                                            : Colors.blue,
+                                      ),
+                                    ),
+                                    child: const Text("Both Days"),
+                                  ),
+                                ],
                               ),
-
+                            ),
+                            ElevatedButton(
+                              onPressed:() {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationForm(addedToCartMap: addedToCartMap,
+                ),
+                ),
+                );
+                },
+                              child: Text('Register'),
                             ),
 
-
-                            Padding(padding: EdgeInsets.all(15.0)),
                           ],
-                        ),
-                      ],
-                    )));
+                        ))));
           },
         ),
       ),
