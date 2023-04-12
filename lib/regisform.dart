@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:technozarre/MyApp.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -130,11 +129,15 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   },
                   child: Text('Submit'),
                 ),
+
               ],
+
             ),
           ),
         ),
+
       ),
+
     );
   }
 
