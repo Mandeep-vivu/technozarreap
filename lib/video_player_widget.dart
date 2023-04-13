@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
+  const VideoPlayerWidget({super.key});
+
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
 }
@@ -33,8 +36,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       child: FittedBox(
         fit: BoxFit.fitWidth,
         child: SizedBox(
-          width: _videoPlayerController.value.size.width ?? 0,
-          height: _videoPlayerController.value.size.height ?? 0,
+          width: _videoPlayerController.value.size.width,
+          height: _videoPlayerController.value.size.height,
           child: VideoPlayer(_videoPlayerController),
         ),
       ),

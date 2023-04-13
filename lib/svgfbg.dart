@@ -10,7 +10,7 @@ class MyPainter extends CustomPainter {
     // Path number 1
 
 
-    paint.color = Color(0xff01);
+    paint.color = const Color(0x0000ff01);
     path = Path();
     path.lineTo(0, size.height * 0.88);
     path.cubicTo(0, size.height * 0.88, size.width * 0.14, size.height * 0.82, size.width * 0.14, size.height * 0.82);
@@ -48,7 +48,7 @@ class MyPainter extends CustomPainter {
     // Path number 2
 
 
-    paint.color = Color(0xff02);
+    paint.color = const Color(0x0000ff02);
     path = Path();
     path.lineTo(0, size.height * 1.09);
     path.cubicTo(0, size.height * 1.09, size.width * 0.14, size.height * 1.06, size.width * 0.14, size.height * 1.06);
@@ -86,7 +86,7 @@ class MyPainter extends CustomPainter {
     // Path number 3
 
 
-    paint.color = Color(0xff262699);
+    paint.color = const Color(0xff262699);
     path = Path();
     path.lineTo(0, size.height * 1.38);
     path.cubicTo(0, size.height * 1.38, size.width * 0.14, size.height * 1.32, size.width * 0.14, size.height * 1.32);
@@ -120,6 +120,7 @@ class MyPainter extends CustomPainter {
     path.cubicTo(0, size.height * 1.59, 0, size.height * 1.38, 0, size.height * 1.38);
     canvas.drawPath(path, paint);
   }
+  @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }

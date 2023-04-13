@@ -70,10 +70,10 @@ class _MyAppState extends State<MyApp> {
                         ),
                         child: Stack(
                           children: [
-                            VideoPlayerWidget(),
+                            const VideoPlayerWidget(),
                             Column(
                               children: [
-                                SizedBox(height: 10.0),
+                                const SizedBox(height: 10.0),
                                 Expanded(
                                   child: ListView.builder(
                                     itemCount: selectedDate == "04 May"
@@ -108,13 +108,13 @@ class _MyAppState extends State<MyApp> {
                                               const EdgeInsets.symmetric(
                                                   horizontal: 0.0,
                                                   vertical: 0.0),
-                                              title: Container(
+                                              title: SizedBox(
                                                 height:
                                                 90.0, // set the height to your desired value
                                                 child: ListTile(
                                                   title: Text(
                                                     event.title,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.white,
                                                         fontWeight:
                                                         FontWeight.bold,
@@ -125,18 +125,18 @@ class _MyAppState extends State<MyApp> {
                                                     CrossAxisAlignment
                                                         .start,
                                                     children: [
-                                                      SizedBox(height: 5),
+                                                      const SizedBox(height: 5),
                                                       Row(
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                               Icons.location_on,
                                                               color:
                                                               Colors.white),
-                                                          SizedBox(width: 5),
+                                                          const SizedBox(width: 5),
                                                           Expanded(
                                                             child: Text(
                                                               event.venue,
-                                                              style: TextStyle(
+                                                              style: const TextStyle(
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 14),
@@ -144,15 +144,15 @@ class _MyAppState extends State<MyApp> {
                                                           ),
                                                         ],
                                                       ),
-                                                      SizedBox(height: 5),
+                                                      const SizedBox(height: 5),
                                                       Row(children: [
-                                                        Icon(Icons.access_time,
+                                                        const Icon(Icons.access_time,
                                                             color:
                                                             Colors.white),
-                                                        SizedBox(width: 5),
+                                                        const SizedBox(width: 5),
                                                         Text(
                                                           event.time,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color:
                                                               Colors.white,
                                                               fontSize: 14),
@@ -244,16 +244,16 @@ class _MyAppState extends State<MyApp> {
                                                               }
                                                             });
                                                           },
+                                                          style: ButtonStyle(
+                                                            minimumSize: MaterialStateProperty.all(const Size(330, 35)),
+                                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                                                            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                                            elevation: MaterialStateProperty.all(0),
+                                                          ),
                                                           child: Text(
                                                             isAddedToCart
                                                                 ? 'remove from the List'
                                                                 : 'Add to the List',
-                                                          ),
-                                                          style: ButtonStyle(
-                                                            minimumSize: MaterialStateProperty.all(Size(330, 35)),
-                                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                                                            backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                                                            elevation: MaterialStateProperty.all(0),
                                                           ),
                                                         ),
 
@@ -268,7 +268,7 @@ class _MyAppState extends State<MyApp> {
                                     },
                                   ),
                                 ),
-                                Padding(padding: EdgeInsets.all(15.0)),
+                                const Padding(padding: EdgeInsets.all(15.0)),
                               ],
                             ),
                             Positioned(
@@ -314,13 +314,13 @@ class _MyAppState extends State<MyApp> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => RegistrationForm(
-                                        addedToCartTitles: addedToCartTitles, addedToCartMap: {},
+                                        addedToCartTitles: addedToCartTitles, addedToCartMap: const {},
                                       ),
                                     ),
                                   );
                                 },
 
-                                child: Text('To Register'),
+                                child: const Text('To Register'),
                               ),
                             ),
                           ],
