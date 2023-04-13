@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
   bool _isPressed = false;
   bool _isPressed1 = true;
   bool _isPressed2 = true;
-  Map<int, bool> addedToCartMap = {};
+
   ElevatedButton _buildButton(
       String text, bool isPressed, VoidCallback onPressed) {
     return ElevatedButton(
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       child: Text(text),
     );
   }
-
+  Map<String, bool> addedToCartMap = {};
   EventData eventData = EventData();
   @override
   Widget build(BuildContext context) {
@@ -87,9 +87,7 @@ class _MyAppState extends State<MyApp> {
                                           : selectedDate == "05 May"
                                           ? eventData.events05May[index]
                                           : eventData.eventsBothDays[index];
-                                      bool isAddedToCart =
-                                          addedToCartMap.containsKey(index) &&
-                                              addedToCartMap[index] == true;
+                                      bool isAddedToCart = addedToCartMap.containsKey(event.title) && addedToCartMap[event.title] == true;
 
                                       return Container(
                                           padding: const EdgeInsets.symmetric(
@@ -195,12 +193,15 @@ class _MyAppState extends State<MyApp> {
                                                       const Padding(
                                                           padding:
                                                           EdgeInsets.all(
-                                                              5.0)),
+                                                              10.0)),
                                                       Container(
                                                         alignment:
                                                         Alignment.center,
+
+                                                        height: 35,
                                                         decoration:
                                                         BoxDecoration(
+
                                                           gradient:
                                                           LinearGradient(
                                                             begin: Alignment
@@ -237,30 +238,27 @@ class _MyAppState extends State<MyApp> {
                                                           onPressed: () {
                                                             setState(() {
                                                               if (isAddedToCart) {
-                                                                addedToCartMap
-                                                                    .remove(
-                                                                    index);
+                                                                addedToCartMap.remove(event.title); // Use event.title as the key
                                                               } else {
-                                                                addedToCartMap[
-                                                                index] =
-                                                                true;
+                                                                addedToCartMap[event.title] = true; // Use event.title as the key
                                                               }
                                                             });
                                                           },
                                                           child: Text(
                                                             isAddedToCart
-                                                                ? 'remove'
-                                                                : 'Add',
+                                                                ? 'remove from the List'
+                                                                : 'Add to the List',
                                                           ),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            primary: Colors
-                                                                .transparent, // This removes the default button background
-                                                            elevation: 0,
-                                                            // This removes the default button shadow
+                                                          style: ButtonStyle(
+                                                            minimumSize: MaterialStateProperty.all(Size(330, 35)),
+                                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                                                            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                                            elevation: MaterialStateProperty.all(0),
                                                           ),
                                                         ),
-                                                      )
+
+                                                        ),
+
                                                     ],
                                                   ),
                                                 ),
@@ -311,15 +309,17 @@ class _MyAppState extends State<MyApp> {
                               right: 0,
                               child: ElevatedButton(
                                 onPressed: () {
+                                  List<String> addedToCartTitles = addedToCartMap.entries.where((entry) => entry.value).map((entry) => entry.key).toList();
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => RegistrationForm(
-                                        addedToCartMap: addedToCartMap,
+                                        addedToCartTitles: addedToCartTitles, addedToCartMap: {},
                                       ),
                                     ),
                                   );
                                 },
+
                                 child: Text('To Register'),
                               ),
                             ),
