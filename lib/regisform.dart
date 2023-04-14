@@ -23,11 +23,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
   String _city = '';
   String _gender = '';
   int _courseYear = 1;
-  bool _payOnline = false;
-  String _transactionId = '';
-  String _paymentScreenshotUrl = '';
-
-
 
   @override
   Widget build(
@@ -523,143 +518,44 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       },
                     ),
 
-                    Text('Payment Method:'),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: _payOnline,
-                          onChanged: (value) {
-                            setState(() {
-                              _payOnline = value!;
-                            });
-                          },
-                        ),
-                        Text('Pay online'),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: !_payOnline,
-                          onChanged: (value) {
-                            setState(() {
-                              _payOnline = !value!;
-                            });
-                          },
-                        ),
-                        Text('Pay on counter'),
-                      ],
-                    ),
-                    if (_payOnline) ...[
-                      Text('Scan the QR code to pay:'),
-                      Image.asset('assets/posters/4.png'),
-                      Text('Transaction ID:'),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter transaction ID';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _transactionId = value!;
-                        },
-                      ),
-                      Text('Payment Screenshot:'),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter payment screenshot URL';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _paymentScreenshotUrl = value!;
-                        },
-                      ),
-                    ],
 
                     const SizedBox(
                         height: 16.0),
                     ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          Map<String, dynamic> data = {
+                      onPressed: () {
+                        if (_formKey
+                            .currentState!
+                            .validate()) {
+                          _formKey
+                              .currentState!
+                              .save();
+                          Map<
+                              String,
+                              dynamic> data = {
                             'name': _name,
                             'mobile': _mobile,
                             'email': _email,
-                            'events': widget.addedToCartTitles,
-                            'College Name': _college,
-                            'gender': _gender,
-                            'Course Year': _courseYear,
-                            'city': _city,
+                            'events': widget
+                                .addedToCartTitles,
                           };
-                          if (_payOnline) {
-                            // handle online payment
-                            if (_transactionId.isNotEmpty && _paymentScreenshotUrl.isNotEmpty) {
-                              // call sendRegistrationData with payment data
-                              await sendRegistrationData(
-                                _name,
-                                _mobile,
-                                _email,
-                                widget.addedToCartTitles,
-                                _college,
-                                _gender,
-                                _courseYear,
-                                _city,
-                                paymentType: 'online',
-                                transactionId: _transactionId,
-                                paymentScreenshotUrl: _paymentScreenshotUrl,
-                              );
-                            } else {
-                              // show error message
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Please enter transaction ID and payment screenshot URL')),
-                              );
-                              return;
-                            }
-                          } else {
-                            // handle on-counter payment
-                            // call sendRegistrationData with payment data
-                            await sendRegistrationData(
+                          // call sendRegistrationData with the registration data
+                          sendRegistrationData(
                               _name,
                               _mobile,
                               _email,
-                              widget.addedToCartTitles,
-                              _college,
-                              _gender,
-                              _courseYear,
-                              _city,
-                              paymentType: 'counter',
-                            );
-                          }
-                          try {
-                            // Show success message using SnackBar
-                            _scaffoldKey.currentState!.showSnackBar(const SnackBar(
-                              content: Text('Registration successful.'),
-                              duration: Duration(seconds: 3),
-                            ));
-                            // Clear the form fields
-                            _formKey.currentState!.reset();
-                          } catch (e) {
-                            // Show error message using SnackBar
-                            _scaffoldKey.currentState!.showSnackBar(const SnackBar(
-                              content: Text('Error: Registration failed.'),
-                              duration: Duration(seconds: 3),
-                            ));
-                          }
+                              widget
+                                  .addedToCartTitles
+                          ,_college,
+                            _gender,
+                            _courseYear,
+                            _city
+                          );
                         }
                       },
-                      child: const Text('Submit'),
-                    ),
 
+                      child: Text(
+                          'Submit'),
+                    ),
                   ],
                 ),
               ),

@@ -13,11 +13,8 @@ Future<void> sendRegistrationData(
     String college,
     String gender,
     int courseYear,
-    String city, {
-      String? paymentType,
-      String? transactionId,
-      String? paymentScreenshotUrl,
-    }) async {
+    String city,
+    ) async {
   final logger = Logger();
   try {
     // Encode the data as JSON
@@ -30,12 +27,8 @@ Future<void> sendRegistrationData(
       'gender': gender,
       'year': courseYear,
       'city': city,
-      'is_paid': paymentType == 'online',
-      'transaction_id': transactionId,
-      'referral': paymentScreenshotUrl,
     });
-    print(data);
-    print(paymentType);
+
 
     // Send the HTTP POST request to the server
     final response = await http.post(
