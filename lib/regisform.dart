@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:technozarre/resgisdone.dart';
+import 'loginpage.dart';
 import 'submitbt.dart';
 class RegistrationForm extends StatefulWidget {
   final Map<String, bool> addedToCartMap;
@@ -15,14 +17,25 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final _formKey = GlobalKey<
       FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+  String? _name;
+  String? _mobile;
+  String? _email;
+  String? _college;
+  String? _city;
+  String? _gender;
+  int? _courseYear;
+  @override
+  void initState() {
+    super.initState();
+    _name = User.currentUser?.name ?? '';
+    _mobile = User.currentUser?.phone ?? '';
+    _email = User.currentUser?.emailId;
+    _college = User.currentUser?.college ?? '';
+    _city = User.currentUser?.city ?? '';
+    _gender = User.currentUser?.gender ?? '';
+    _courseYear = User.currentUser?.year;
+  }
 
-  String _name = '';
-  String _mobile = '';
-  String _email = '';
-  String _college = '';
-  String _city = '';
-  String _gender = '';
-  int _courseYear = 1;
 
   @override
   Widget build(
@@ -60,6 +73,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                     const SizedBox(height: 16.0),
                     TextFormField(
+                      initialValue: _name,
                       decoration:  InputDecoration(
                         labelText: 'Name',
                         labelStyle: const TextStyle(
@@ -120,6 +134,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                     const SizedBox(height: 16.0),
                     TextFormField(
+                      initialValue: _mobile,
                       decoration: InputDecoration(
                         labelText: 'Mobile',
                         labelStyle: const TextStyle(
@@ -170,17 +185,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       style: const TextStyle(color: Colors.purple),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your mobile number';
+                          return 'Please enter your name';
                         }
                         return null;
                       },
                       onSaved: (value) {
-                        _mobile = value!;
+                        _mobile= value!;
                       },
                     ),
                     const SizedBox(height: 16.0),
                     TextFormField(
-
+                      initialValue: _email,
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: const TextStyle(
@@ -240,11 +255,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         return null;
                       },
                       onSaved: (value) {
-                        _email = value!;
+                        _email= value!;
                       },
                     ),
                     const SizedBox(height: 16.0),
                   TextFormField(
+                    initialValue: _college,
                     decoration: InputDecoration(
                       labelText: 'College Name',
                       labelStyle: const TextStyle(
@@ -304,6 +320,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                   const SizedBox(height: 16.0),
                     TextFormField(
+                      initialValue: _city,
                       decoration: InputDecoration(
                         labelText: 'City',
                         labelStyle: const TextStyle(
@@ -364,6 +381,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                     const SizedBox(height: 16.0),
                     TextFormField(
+                      initialValue: _gender,
                       decoration: InputDecoration(
                         labelText: 'Gender',
                         labelStyle: const TextStyle(
@@ -532,24 +550,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           Map<
                               String,
                               dynamic> data = {
-                            'name': _name,
-                            'mobile': _mobile,
-                            'email': _email,
-                            'events': widget
-                                .addedToCartTitles,
+                            'name': User.currentUser?.name ?? _name,
+                            'mobile': User.currentUser?.phone ?? _mobile,
+                            'email': User.currentUser?.emailId ?? _email,
+                            'events': widget.addedToCartTitles,
+                            'college': User.currentUser?.college ?? _college,
+                            'gender': User.currentUser?.gender ?? _gender,
+                            'courseYear': User.currentUser?.year ?? _courseYear,
+                            'city': User.currentUser?.city ?? _city,
                           };
                           // call sendRegistrationData with the registration data
                           sendRegistrationData(
-                              _name,
-                              _mobile,
-                              _email,
-                              widget
-                                  .addedToCartTitles
-                          ,_college,
-                            _gender,
-                            _courseYear,
-                            _city
+
+                              widget.addedToCartTitles,
+
                           );
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationDoneScreen()));
                         }
                       },
 

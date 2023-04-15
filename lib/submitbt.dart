@@ -2,31 +2,24 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
+import 'loginpage.dart';
+
 // Define the API endpoint URL
-const String apiUrl = 'http://210.212.116.123:9090/registrations/new';
+const String apiUrl = 'http://titsfest.weeb-developerz.xyz:9090/registrations/update-events';
 
 Future<void> sendRegistrationData(
-    String name,
-    String mobile,
-    String email,
+
     List<String> addedToCartTitles,
-    String college,
-    String gender,
-    int courseYear,
-    String city,
+
     ) async {
   final logger = Logger();
   try {
     // Encode the data as JSON
     final data = jsonEncode({
-      'name': name,
-      'phone': mobile,
-      'email_id': email,
+      'email_id' : User.currentUser?.emailId,
+      'password': User.currentUser?.password,
       'events': addedToCartTitles,
-      'College': college,
-      'gender': gender,
-      'year': courseYear,
-      'city': city,
+
     });
 
 

@@ -13,6 +13,7 @@ class MyApp1 extends StatelessWidget {
     return MaterialApp(
       title: 'My App',
       home: LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

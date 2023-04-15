@@ -303,26 +303,27 @@ class _MyAppState extends State<MyApp> {
                                 ],
                               ),
                             ),
-                            Positioned(
-                              bottom: -7,
-                              left: 0,
-                              right: 0,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  List<String> addedToCartTitles = addedToCartMap.entries.where((entry) => entry.value).map((entry) => entry.key).toList();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RegistrationForm(
-                                        addedToCartTitles: addedToCartTitles, addedToCartMap: const {},
-                                      ),
-                                    ),
-                                  );
-                                },
-
-                                child: const Text('To Register'),
+                      Positioned(
+                        bottom: -7,
+                        left: 0,
+                        right: 0,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            List<String> addedToCartTitles = addedToCartMap.entries.where((entry) => entry.value).map((entry) => entry.key).toList();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegistrationForm(
+                                  addedToCartTitles: addedToCartTitles,
+                                  addedToCartMap: const {},
+                                ),
                               ),
-                            ),
+                            );
+                          },
+                          child: const Text('To Register'),
+                        ),
+                      ),
+
                           ],
                         ))));
           },

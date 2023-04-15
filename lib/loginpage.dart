@@ -9,6 +9,57 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
+class User {
+  static User? currentUser;
+
+  String? id;
+  String? name;
+  String? college;
+  String? gender;
+  String? emailId;
+  String? phone;
+  int? year;
+  String? city;
+  List<String>? events;
+  String? password;
+
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    college = json['college'];
+    gender = json['gender'];
+    emailId = json['email_id'];
+    phone = json['phone'];
+    year = json['year'];
+    city = json['city'];
+    events = List<String>.from(json['events'] ?? []);
+    password=json['password'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data1 = Map<String, dynamic>();
+    data1['id'] = id;
+    data1['name'] = name;
+    data1['college'] = college;
+    data1['gender'] = gender;
+    data1['email_id'] = emailId;
+    data1['phone'] = phone;
+    data1['year'] = year;
+    data1['city'] = city;
+    data1['events'] = events;
+    data1['password']=password;
+    return data1;
+  }
+  void addEvents(List<String> newEvents) {
+    if (events == null) {
+      events = [];
+    }
+    events!.addAll(newEvents);
+  }
+}
+
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -28,51 +79,77 @@ class _LoginPageState extends State<LoginPage> {
 
       if (loginResponse.statusCode == 200) {
         final String responseString = loginResponse.body;
-        var responseJson =
-        Map<String, dynamic>.from(json.decode(responseString));
-        print(responseJson);
-        print(loginResponse.headers);
-        print(loginResponse);
-        return loginResponse;
+        var responseJson = Map<String, dynamic>.from(json.decode(responseString));
+        User.currentUser = User.fromJson(responseJson); // store the user object
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp(
+          )),
+        );
       } else {
         final String responseString = loginResponse.body;
-        var responseJson =
-        Map<String, dynamic>.from(json.decode(responseString));
+        var responseJson = Map<String, dynamic>.from(json.decode(responseString));
         print(responseJson);
         print(loginResponse.headers);
         print(loginResponse);
         return null;
       }
+
     } catch (err) {
       print("Error" + err.toString());
       return null;
     }
   }
 
-  void _loginButtonPressed(BuildContext context) async {
-    var response = await login(emailController.text, passController.text);
-    if (response != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MyApp()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Login failed! Please try again."),
-      ));
-    }
+  Widget _loginButtonPressed(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder(
+        future: login(emailController.text, passController.text),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyApp()),
+            );
+          } else if (snapshot.hasError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Login failed! Please try again."),
+            ));
+          }
+          return CircularProgressIndicator();
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
-      body: SingleChildScrollView(
+    Size ScreenSize = MediaQuery.of(context).size;
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/login.jpeg'), fit: BoxFit.contain)),
+        child:
+     Scaffold(
+       backgroundColor: Colors.transparent,
+      body:Stack(
+          children: [
+      Container(
+      padding: EdgeInsets.only(
+      left: ScreenSize.width * 0.03, top: ScreenSize.height * 0.23),
+       child: const Text(
+         'Welcome Back! \n TITS Bhiwani',
+         style: TextStyle(
+             color: Color.fromARGB(255, 53, 51, 51), fontSize: 35),
+       ),
+     ),
+      SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.only(
+              left: ScreenSize.width * 0.03,
+              top: ScreenSize.height * 0.55,
+              right: ScreenSize.width * 0.03),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -98,14 +175,37 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
-              ElevatedButton(
-                onPressed: () => _loginButtonPressed(context),
-                child: Text("Login"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Sign In',
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900),
+                  ),
+                  CircleAvatar(
+                    radius: 30,
+
+                    child: IconButton(
+                      color: Colors.white,
+                      onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  _loginButtonPressed(context),));
+                      },
+                      icon: const Icon(Icons.arrow_forward),
+                    ),
+                  )
+                ],
               ),
             ],
           ),
         ),
       ),
-    );
+    ]))
+    )
+    ;
   }
 }
