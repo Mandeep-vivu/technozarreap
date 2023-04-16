@@ -1,27 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
+import 'package:flutter/material.dart';
 
 import 'loginpage.dart';
 
 // Define the API endpoint URL
 const String apiUrl = 'http://titsfest.weeb-developerz.xyz:9090/registrations/update-events';
 
-Future<void> sendRegistrationData(
-
-    List<String> addedToCartTitles,
-
-    ) async {
-  final logger = Logger();
+Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext context) async {
   try {
     // Encode the data as JSON
     final data = jsonEncode({
       'email_id' : User.currentUser?.emailId,
       'password': User.currentUser?.password,
       'events': addedToCartTitles,
-
     });
-
 
     // Send the HTTP POST request to the server
     final response = await http.post(
@@ -34,12 +27,86 @@ Future<void> sendRegistrationData(
 
     // Check if the server responded with a success status code
     if (response.statusCode == 200) {
-      logger.i('Registration data sent successfully!');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.white,
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Registration data sent successfully!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
     } else {
-      logger.e(
-          'Failed to send registration data! Response status code: ${response.statusCode}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              Icon(
+                Icons.error,
+                color: Colors.white,
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Failed to send registration data! Response status code: ${response.statusCode}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
     }
   } catch (error) {
-    logger.e('Error sending registration data: $error');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'Error sending registration data: $error',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(seconds: 3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
   }
 }

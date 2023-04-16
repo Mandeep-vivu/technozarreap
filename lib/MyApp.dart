@@ -42,10 +42,7 @@ class _MyAppState extends State<MyApp> {
   EventData eventData = EventData();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'College Fest',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+   return Scaffold(
         // Wrap the body with a Builder widget to access a context that has a MediaQuery widget ancestor
         body: Builder(
           builder: (BuildContext context) {
@@ -328,7 +325,7 @@ class _MyAppState extends State<MyApp> {
                         ))));
           },
         ),
-      ),
+
     );
   }
 }

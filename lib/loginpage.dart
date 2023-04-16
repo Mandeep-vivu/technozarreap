@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'MyApp.dart';
+import 'package:flutter/foundation.dart';
+import 'package:rive/rive.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key});
@@ -24,7 +27,6 @@ class User {
   List<String>? events;
   String? password;
 
-
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -35,7 +37,7 @@ class User {
     year = json['year'];
     city = json['city'];
     events = List<String>.from(json['events'] ?? []);
-    password=json['password'];
+    password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,9 +51,10 @@ class User {
     data1['year'] = year;
     data1['city'] = city;
     data1['events'] = events;
-    data1['password']=password;
+    data1['password'] = password;
     return data1;
   }
+
   void addEvents(List<String> newEvents) {
     if (events == null) {
       events = [];
@@ -61,12 +64,18 @@ class User {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late String animationURL;
+  Artboard? _teddyArtboard;
+  SMITrigger? successTrigger, failTrigger;
+  SMIBool? isHandsUp, isChecking;
+  SMINumber? numLook;
+
+  StateMachineController? stateMachineController;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
 
   Future<http.Response?> login(String emailId, String password) async {
-    const String apiUrl =
-        "http://titsfest.weeb-developerz.xyz:9090/registrations/login";
+    const String apiUrl = "http://titsfest.weeb-developerz.xyz:9090/registrations/login";
 
     try {
       var loginResponse = await http.post(Uri.parse(apiUrl), headers: {
@@ -81,18 +90,9 @@ class _LoginPageState extends State<LoginPage> {
         final String responseString = loginResponse.body;
         var responseJson = Map<String, dynamic>.from(json.decode(responseString));
         User.currentUser = User.fromJson(responseJson); // store the user object
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyApp(
-          )),
-        );
+        return loginResponse; // return the response
       } else {
-        final String responseString = loginResponse.body;
-        var responseJson = Map<String, dynamic>.from(json.decode(responseString));
-        print(responseJson);
-        print(loginResponse.headers);
-        print(loginResponse);
+        // Login failed, show an error message
         return null;
       }
 
@@ -101,26 +101,60 @@ class _LoginPageState extends State<LoginPage> {
       return null;
     }
   }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    animationURL = defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS
+        ? 'assets/login.riv'
+        : 'animations/login.riv';
+    rootBundle.load(animationURL).then(
+          (data) {
+        final file = RiveFile.import(data);
+        final artboard = file.mainArtboard;
+        stateMachineController =
+            StateMachineController.fromArtboard(artboard, "Login Machine");
+        if (stateMachineController != null) {
+          artboard.addController(stateMachineController!);
 
-  Widget _loginButtonPressed(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: login(emailController.text, passController.text),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          } else if (snapshot.hasError) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("Login failed! Please try again."),
-            ));
-          }
-          return CircularProgressIndicator();
-        },
-      ),
+          stateMachineController!.inputs.forEach((e) {
+            debugPrint(e.runtimeType.toString());
+            debugPrint("name${e.name}End");
+          });
+
+          stateMachineController!.inputs.forEach((element) {
+            if (element.name == "trigSuccess") {
+              successTrigger = element as SMITrigger;
+            } else if (element.name == "trigFail") {
+              failTrigger = element as SMITrigger;
+            } else if (element.name == "isHandsUp") {
+              isHandsUp = element as SMIBool;
+            } else if (element.name == "isChecking") {
+              isChecking = element as SMIBool;
+            } else if (element.name == "numLook") {
+              numLook = element as SMINumber;
+            }
+          });
+        }
+
+        setState(() => _teddyArtboard = artboard);
+      },
     );
+  }
+
+  void handsOnTheEyes() {
+    isHandsUp?.change(true);
+  }
+
+  void lookOnTheTextField() {
+    isHandsUp?.change(false);
+    isChecking?.change(true);
+    numLook?.change(0);
+  }
+
+  void moveEyeBalls(val) {
+    numLook?.change(val.length.toDouble());
   }
 
   @override
@@ -128,84 +162,96 @@ class _LoginPageState extends State<LoginPage> {
     Size ScreenSize = MediaQuery.of(context).size;
     return Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/login.jpeg'), fit: BoxFit.contain)),
-        child:
-     Scaffold(
-       backgroundColor: Colors.transparent,
-      body:Stack(
-          children: [
-      Container(
-      padding: EdgeInsets.only(
-      left: ScreenSize.width * 0.03, top: ScreenSize.height * 0.23),
-       child: const Text(
-         'Welcome Back! \n TITS Bhiwani',
-         style: TextStyle(
-             color: Color.fromARGB(255, 53, 51, 51), fontSize: 35),
-       ),
-     ),
-      SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-              left: ScreenSize.width * 0.03,
-              top: ScreenSize.height * 0.55,
-              right: ScreenSize.width * 0.03),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+        image: DecorationImage(
+        image: AssetImage('assets/bg.png'), fit: BoxFit.cover)),
+    child: Scaffold(
+    backgroundColor: Colors.transparent,
+    body: Stack(
+    children: [
+    SingleChildScrollView(
+    padding: EdgeInsets.only(
+    left: ScreenSize.width * 0.1,
+      right: ScreenSize.width * 0.1,
+      top: ScreenSize.width * 0.3,
+    ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (_teddyArtboard != null)
+            SizedBox(
+              width: ScreenSize.width * 0.8,
+              height: ScreenSize.height * 0.3,
+              child: Rive(
+                artboard: _teddyArtboard!,
+                fit: BoxFit.fitWidth,
               ),
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              TextField(
-                controller: passController,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                ),
-                obscureText: true,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Sign In',
-                    style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900),
-                  ),
-                  CircleAvatar(
-                    radius: 30,
+            ),
 
-                    child: IconButton(
-                      color: Colors.white,
-                      onPressed: () async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  _loginButtonPressed(context),));
-                      },
-                      icon: const Icon(Icons.arrow_forward),
-                    ),
-                  )
-                ],
-              ),
-            ],
+          TextField(
+            controller: emailController,
+            onTap: lookOnTheTextField,
+            onChanged: moveEyeBalls,
+            decoration: const InputDecoration(
+              hintText: 'Email',
+              hintStyle: TextStyle(color: Colors.grey),
+              border: OutlineInputBorder(),
+            ),
           ),
-        ),
+          const SizedBox(height: 20),
+          TextField(
+            obscureText: true,
+            controller: passController,
+            onTap: handsOnTheEyes,
+            keyboardType: TextInputType.visiblePassword,
+            decoration: const InputDecoration(
+              hintText: 'Password',
+              hintStyle: TextStyle(color: Colors.grey),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () async {
+// Call the login function when the login button is pressed
+              isChecking?.change(false);
+              isHandsUp?.change(false);
+              var response = await login(emailController.text, passController.text);
+              if (response != null) {
+                successTrigger?.fire();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyApp()),
+                );
+              } else {
+// Show an error message
+                failTrigger?.fire();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Invalid email or password',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    backgroundColor: Colors.red,
+                    duration: Duration(seconds: 3),
+                    action: SnackBarAction(
+                      label: 'OK',
+                      textColor: Colors.blue,
+                      onPressed: () {},
+                    ),
+                  ),
+                );
+
+              }
+            },
+            child: const Text('Login'),
+          ),
+        ],
       ),
-    ]))
-    )
-    ;
+    ),
+    ],
+    ),
+    ),
+    );
   }
 }

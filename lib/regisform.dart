@@ -40,7 +40,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
   @override
   Widget build(
       BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+          Navigator.pop(context); // Navigate back to the previous screen
+          return false; // Return false to prevent the app from being closed
+        },
+      child: Scaffold(
 
       body: Stack(
         children: [
@@ -74,6 +79,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(height: 16.0),
                     TextFormField(
                       initialValue: _name,
+                      enabled: false,
                       decoration:  InputDecoration(
                         labelText: 'Name',
                         labelStyle: const TextStyle(
@@ -135,6 +141,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(height: 16.0),
                     TextFormField(
                       initialValue: _mobile,
+                      enabled: false,
                       decoration: InputDecoration(
                         labelText: 'Mobile',
                         labelStyle: const TextStyle(
@@ -196,6 +203,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(height: 16.0),
                     TextFormField(
                       initialValue: _email,
+                      enabled: false,
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: const TextStyle(
@@ -261,6 +269,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(height: 16.0),
                   TextFormField(
                     initialValue: _college,
+                    enabled: false,
                     decoration: InputDecoration(
                       labelText: 'College Name',
                       labelStyle: const TextStyle(
@@ -321,6 +330,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   const SizedBox(height: 16.0),
                     TextFormField(
                       initialValue: _city,
+                      enabled: false,
                       decoration: InputDecoration(
                         labelText: 'City',
                         labelStyle: const TextStyle(
@@ -382,6 +392,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(height: 16.0),
                     TextFormField(
                       initialValue: _gender,
+                      enabled: false,
                       decoration: InputDecoration(
                         labelText: 'Gender',
                         labelStyle: const TextStyle(
@@ -490,6 +501,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       ),
                       style: const TextStyle(color: Colors.purple),
                       value: _courseYear,
+
                       onChanged: (value) {
                         setState(() {
                           _courseYear = value!;
@@ -503,7 +515,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         );
                       }).toList(),
                     ),
-
+                    const SizedBox(height: 16.0),
                     const Text(
                       'Events you added to register:',
                       style: TextStyle(
@@ -540,7 +552,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     const SizedBox(
                         height: 16.0),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async{
                         if (_formKey
                             .currentState!
                             .validate()) {
@@ -560,13 +572,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                             'city': User.currentUser?.city ?? _city,
                           };
                           // call sendRegistrationData with the registration data
-                          sendRegistrationData(
+                          await sendRegistrationData(widget.addedToCartTitles, context);
 
-                              widget.addedToCartTitles,
 
-                          );
-
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationDoneScreen()));
                         }
                       },
 
@@ -580,6 +588,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
