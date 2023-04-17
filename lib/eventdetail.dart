@@ -36,7 +36,7 @@ class EventData {
     ),
     Event(
       title: "Code War",
-      posterUrl: "assets/posters/techq.png",
+      posterUrl: "assets/posters/Code War.jpg",
       time: "1:00 PM - 3:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -44,7 +44,7 @@ class EventData {
     ),
     Event(
       title: "Masala Allocation",
-      posterUrl: "assets/favicon.png",
+      posterUrl: "assets/posters/Masala Allocation.png",
       time: "03:00 PM - 06:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -60,7 +60,7 @@ class EventData {
     ),
     Event(
       title: "Anime Quiz",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Animie Quiz.jpg",
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -68,7 +68,7 @@ class EventData {
     ),
     Event(
       title: "Fibre Structure",
-      posterUrl: "https://picsum.photos/205",
+      posterUrl: "assets/posters/Fiber Structure.png",
       time: "12:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -84,7 +84,7 @@ class EventData {
     ),
     Event(
       title: "Digital Illustration",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/digital illustration.png",
       time: "02:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -92,7 +92,7 @@ class EventData {
     ),
     Event(
       title: "Auto CAD",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Autocad.png",
       time: "03:00 PM - 05:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -100,7 +100,7 @@ class EventData {
     ),
     Event(
       title: "PPT Competition",
-      posterUrl: "https://picsum.photos/205",
+      posterUrl: "assets/posters/PPT Competition.png",
       time: "04:00 PM - 06:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -126,8 +126,8 @@ class EventData {
       "Players have to search for hidden objects by following a trail of clues that is well hidden in the campus.",
     ),
     Event(
-      title: "Structural Engineering",
-      posterUrl: "assets/posters/hcka.png",
+      title: "Bridge Making",
+      posterUrl: "assets/posters/structural engineering.mp4",
       time: "10:00 AM - 12:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -135,7 +135,7 @@ class EventData {
     ),
     Event(
       title: "Press Release",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Press RElease.jpg",
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -143,7 +143,7 @@ class EventData {
     ),
     Event(
       title: "Anime Quiz",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Animie Quiz.jpg",
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -159,7 +159,7 @@ class EventData {
     ),
     Event(
       title: "Code War",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Code War.jpg",
       time: "1:00 PM - 3:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -207,7 +207,7 @@ class EventData {
     ),
     Event(
       title: "Debate",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Debate.jpg",
       time: "10:00 AM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -215,7 +215,7 @@ class EventData {
     ),
     Event(
       title: "Digital Handicraft",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Digital Handicraft.png",
       time: "12:00 PM - 02:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -223,7 +223,7 @@ class EventData {
     ),
     Event(
       title: "Fiber Structure",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Fiber Structure.png",
       time: "12:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -231,7 +231,7 @@ class EventData {
     ),
     Event(
       title: "Pun War",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/pun war.png",
       time: "01:00 PM - 02:00 PM",
       venue: "TIT&S Bhiwani",
       description:
@@ -243,7 +243,7 @@ class EventData {
   List<Event> eventsBothDays = [
     Event(
       title: "Online Gaming",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Online Gaming.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
@@ -251,7 +251,7 @@ class EventData {
     ),
     Event(
       title: "Offline Gaming",
-      posterUrl: "assets/posters/codewar.png",
+      posterUrl: "assets/posters/Offline Gaming.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
@@ -259,7 +259,7 @@ class EventData {
     ),
     Event(
       title: "Human Ludo",
-      posterUrl: "assets/posters/techq.png",
+      posterUrl: "assets/posters/Human Ludo.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
