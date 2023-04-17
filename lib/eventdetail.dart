@@ -20,19 +20,19 @@ class EventData {
   List<Event> events4May = [
     Event(
       title: "Hackathon",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Hackathon.png",
       time: "11:00 AM - 1:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Develop your software problem solving grasp by presenting your ideas in a group and work together to make it creatively possible to be reviewed that will be apprehended by the judges. ",
     ),
     Event(
       title: "Board Meeting",
-      posterUrl: "assets/posters/codewar.png",
+      posterUrl: "assets/posters/Board Meeting.png",
       time: "12:00 PM - 2:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Present your  tactics  to the situation provided by the enable board members on the business information for the betterment of the society.",
     ),
     Event(
       title: "Code War",
@@ -40,7 +40,7 @@ class EventData {
       time: "1:00 PM - 3:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Egg on your inner geek to participate in the coding war of different languages.",
     ),
     Event(
       title: "Masala Allocation",
@@ -48,15 +48,15 @@ class EventData {
       time: "03:00 PM - 06:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Pitch your business ideas in front of a panel of investors to invest in the form of appreciation in your business model. ",
     ),
     Event(
       title: "DJ Night",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/DJ Night.png",
       time: "07:00 PM - 10:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Escort yourself to draw your breath, kick off your shoes, and do crazy dance.",
     ),
     Event(
       title: "Anime Quiz",
@@ -64,7 +64,7 @@ class EventData {
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Your love for anime will be proved by this quiz by testing how much you know about the anime world and their characters.",
     ),
     Event(
       title: "Fibre Structure",
@@ -72,15 +72,15 @@ class EventData {
       time: "12:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Know about the fibre properties of your exquisite clothes that makes you Other-worldly.",
     ),
     Event(
       title: "MUN",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/MUN.png",
       time: "02:00 PM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "This is the simulation of an actual UN conference, where students are tasked with solving a global issue with your research.",
     ),
     Event(
       title: "Digital Illustration",
@@ -88,7 +88,7 @@ class EventData {
       time: "02:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Flaunt your skills of creating a narrative visual art using digital tools. ",
     ),
     Event(
       title: "Auto CAD",
@@ -96,7 +96,7 @@ class EventData {
       time: "03:00 PM - 05:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Make or edit digital 2D and 3D designs to be grandstand among the other competitors. ",
     ),
     Event(
       title: "PPT Competition",
@@ -104,26 +104,26 @@ class EventData {
       time: "04:00 PM - 06:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Demonstrate the skills of your PowerPoint  to boast the corporate communications. ",
     ),
     Event(
       title: "Photography Competition",
-      posterUrl: "https://picsum.photos/205",
+      posterUrl: "assets/posters/Photography.png",
       time: "06:00 PM - 07:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Flex your photographs of any type to be loved by people.",
     ),
   ];
 
   List<Event> events05May = [
     Event(
       title: "Treasure Hunt",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/tresure hunt.png",
       time: "09:00 AM - 11:00 AM",
       venue: "TIT&S Bhiwani",
       description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      "Players have to search for hidden objects by following a trail of clues that is well hidden in the campus.",
     ),
     Event(
       title: "Structural Engineering",
@@ -131,7 +131,7 @@ class EventData {
       time: "10:00 AM - 12:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "Show the proficiency of making a bridge with the provided random materials.",
     ),
     Event(
       title: "Press Release",
@@ -139,7 +139,7 @@ class EventData {
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Paint an organization in a favorable light to its customers to enlighten your product where topics will be given and judged by the panel. ",
     ),
     Event(
       title: "Anime Quiz",
@@ -147,15 +147,15 @@ class EventData {
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Your love for anime will be proved by this quiz by testing how much you know about the anime world and their characters.",
     ),
     Event(
       title: "Tech Quiz",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/tech quiz.png",
       time: "11:00 AM - 01:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "Make a show of technical stuff with your understanding of technical subjects.",
     ),
     Event(
       title: "Code War",
@@ -163,47 +163,47 @@ class EventData {
       time: "1:00 PM - 3:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Egg on your inner geek to participate in the coding war of different languages.",
     ),
     Event(
       title: "Robo War",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/robot war.png",
       time: "04:00 PM - 05:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Show case you combat skills in robot fight  in which you have to pin down or destroy the opponent robot. ",
     ),
     Event(
       title: "Fashion Show",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/fashion show.png",
       time: "05:00 PM - 08:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Bring out your inner fashionista and boast your aesthetic outfits.",
     ),
     Event(
       title: "Cultural Night",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Cultural Night.png",
       time: "05:00 PM - 08:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "FunEvent where all of you express themselves, build confidence, and develop social skills. ",
     ),
     Event(
       title: "MUN",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/MUN.png",
       time: "09:00 AM - 11:00 AM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "This is the simulation of an actual UN conference, where students are tasked with solving a global issue with your research.",
     ),
     Event(
       title: "Hackathon",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Hackathon.png",
       time: "10:00 AM - 12:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Develop your software problem solving grasp by presenting your ideas in a group and work together to make it creatively possible to be reviewed that will be apprehended by the judges.",
     ),
     Event(
       title: "Debate",
@@ -211,7 +211,7 @@ class EventData {
       time: "10:00 AM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Form an organized contest of ideas in which the participants discuss a topic from two opposing sides where topics will be delivered on the spot.",
     ),
     Event(
       title: "Digital Handicraft",
@@ -219,7 +219,7 @@ class EventData {
       time: "12:00 PM - 02:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Exhibit your artisanal skills by displaying things made from hands in traditional way.",
     ),
     Event(
       title: "Fiber Structure",
@@ -227,7 +227,7 @@ class EventData {
       time: "12:00 PM - 04:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Know about the fibre properties of your exquisite clothes that makes you Other-worldly.",
     ),
     Event(
       title: "Pun War",
@@ -235,7 +235,7 @@ class EventData {
       time: "01:00 PM - 02:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Engage in word play that exploits multiple meanings of a term, or of similar-sounding words in a humorous way. ",
     ),
   ];
 
@@ -247,7 +247,7 @@ class EventData {
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Present your fun side that enhanced in covid period in various online and offline diversions.",
     ),
     Event(
       title: "Offline Gaming",
@@ -255,7 +255,7 @@ class EventData {
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Present your fun side that enhanced in covid period in various online and offline diversions.",
     ),
     Event(
       title: "Human Ludo",
@@ -263,31 +263,31 @@ class EventData {
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Play just like the board ludo with a twist where tokens are replaced by humans.",
     ),
     Event(
       title: "Open Mic",
-      posterUrl: "assets/favicon.png",
+      posterUrl: "assets/posters/Open Mic.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Invite yourself to show case your talent in an open night.",
     ),
     Event(
       title: "Exhibition(Electrical)",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Exhibition.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Evince the electronic components of the technophile.",
     ),
     Event(
       title: "Exhibition(Textile)",
-      posterUrl: "assets/posters/hcka.png",
+      posterUrl: "assets/posters/Exhibition.png",
       time: "Full Day",
       venue: "TIT&S Bhiwani",
       description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Disclosing the textiles of this infamous campus.",
     ),
   ];
 }
