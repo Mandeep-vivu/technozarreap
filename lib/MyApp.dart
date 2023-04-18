@@ -176,8 +176,7 @@ class _MyAppState extends State<MyApp> {
                                                       Image.asset(
                                                         event.posterUrl,
                                                         width: double.infinity,
-                                                        height: 350.0,
-                                                        fit: BoxFit.fitWidth,
+                                                        fit: BoxFit.cover,
                                                       ),
                                                       const SizedBox(
                                                           height: 20.0),

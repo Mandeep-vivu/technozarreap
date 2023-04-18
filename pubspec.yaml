@@ -78,7 +78,6 @@ flutter:
     - assets/posters/Debate.jpg
     - assets/posters/Digital Handicraft.png
     - assets/posters/digital illustration.png
-    - assets/posters/structural engineering.mp4
     - assets/posters/Human Ludo.png
     - assets/posters/Press RElease.jpg
     - assets/posters/pun war.png
@@ -97,7 +96,8 @@ flutter:
     - assets/posters/robot war.png
     - assets/posters/tech quiz.png
     - assets/posters/tresure hunt.png
-    
+    - assets/posters/structural engineering.png
+    -
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

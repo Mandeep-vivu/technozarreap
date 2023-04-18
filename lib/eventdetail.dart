@@ -80,7 +80,7 @@ class EventData {
       time: "02:00 PM - 03:00 PM",
       venue: "TIT&S Bhiwani",
       description:
-      "This is the simulation of an actual UN conference, where students are tasked with solving a global issue with your research.",
+      "Stands for Modern United Nation. This is the simulation of an actual UN conference, where students are tasked with solving a global issue with your research.",
     ),
     Event(
       title: "Digital Illustration",
@@ -127,7 +127,7 @@ class EventData {
     ),
     Event(
       title: "Bridge Making",
-      posterUrl: "assets/posters/structural engineering.mp4",
+      posterUrl: "assets/posters/structural engineering.png",
       time: "10:00 AM - 12:00 PM",
       venue: "TIT&S Bhiwani",
       description:
