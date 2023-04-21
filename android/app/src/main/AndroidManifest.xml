@@ -2,7 +2,7 @@
     package="com.example.technozarrebyvivu">
    <application
         android:label="technozarre"
-        android:name="${applicationName}"
+        android:name="${technozarre}"
         android:icon="@mipmap/favicon">
         <activity
             android:name=".MainActivity"
