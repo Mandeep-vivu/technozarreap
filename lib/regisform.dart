@@ -182,7 +182,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            width: 2.0,
+                            width: 2.0, 
                             color: Colors.red,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
