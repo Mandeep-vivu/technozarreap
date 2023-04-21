@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passController = TextEditingController();
 
   Future<http.Response?> login(String emailId, String password) async {
-    const String apiUrl = "http://titsfest.weeb-developerz.xyz:9090/registrations/login";
+    const String apiUrl = "https://technozarre.titsbhiwani.ac.in/api/registrations/login";
 
     try {
       var loginResponse = await http.post(Uri.parse(apiUrl), headers: {
