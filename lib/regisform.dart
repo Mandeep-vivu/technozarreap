@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:technozarre/resgisdone.dart';
+
 import 'loginpage.dart';
 import 'submitbt.dart';
 class RegistrationForm extends StatefulWidget {

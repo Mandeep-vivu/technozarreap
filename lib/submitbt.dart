@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'loginpage.dart';
 
 // Define the API endpoint URL
-const String apiUrl = 'https://technozarre.titsbhiwani.ac.in/api/registrations/update-events';
+const String apiUrl = 'http://titsfest.weeb-developerz.xyz:9090/registrations/update-events';
 
 Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext context) async {
   try {

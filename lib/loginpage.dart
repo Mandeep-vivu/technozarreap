@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'MyApp.dart';
+import 'eventpage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rive/rive.dart';
 
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passController = TextEditingController();
 
   Future<http.Response?> login(String emailId, String password) async {
-    const String apiUrl = "https://technozarre.titsbhiwani.ac.in/api/registrations/login";
+    const String apiUrl = "http://titsfest.weeb-developerz.xyz:9090/registrations/login";
 
     try {
       var loginResponse = await http.post(Uri.parse(apiUrl), headers: {
