@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'eventpage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rive/rive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key});
@@ -41,7 +43,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data1 = Map<String, dynamic>();
+    final Map<String, dynamic> data1 = <String, dynamic>{};
     data1['id'] = id;
     data1['name'] = name;
     data1['college'] = college;
@@ -89,7 +91,9 @@ class _LoginPageState extends State<LoginPage> {
       if (loginResponse.statusCode == 200) {
         final String responseString = loginResponse.body;
         var responseJson = Map<String, dynamic>.from(json.decode(responseString));
-        User.currentUser = User.fromJson(responseJson); // store the user object
+        User.currentUser = User.fromJson(responseJson);
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('auth_token', User.currentUser?.authToken ?? '');// store the user object
         return loginResponse; // return the response
       } else {
         // Login failed, show an error message

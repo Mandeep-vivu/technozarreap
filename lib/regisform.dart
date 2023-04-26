@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'loginpage.dart';
 import 'submitbt.dart';
 class RegistrationForm extends StatefulWidget {
@@ -578,7 +576,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         }
                       },
 
-                      child: Text(
+                      child: const Text(
                           'Submit'),
                     ),
                   ],

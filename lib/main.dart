@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'eventpage.dart';
+import 'package:technozarre/eventpage.dart';
 import 'loginpage.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 void main() {
-  runApp(  MyApp1());
+  runApp(  const MyApp1());
 }
 
 class MyApp1 extends StatelessWidget {
@@ -12,10 +11,28 @@ class MyApp1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       title: 'My App',
-      home: LoginPage(),
+      home: FutureBuilder<bool>(
+        future: isLoggedIn(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!) {
+              return const MyApp();
+            } else {
+              return const LoginPage();
+            }
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
+      ),
       debugShowCheckedModeBanner: false,
     );
+  }
+  Future<bool> isLoggedIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String authToken = prefs.getString('auth_token') ?? '';
+    return authToken.isNotEmpty;
   }
 }

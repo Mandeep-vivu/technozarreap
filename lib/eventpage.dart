@@ -43,8 +43,85 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-        // Wrap the body with a Builder widget to access a context that has a MediaQuery widget ancestor
-        body: Builder(
+     drawer: Drawer(
+       child: Container(
+         decoration: const BoxDecoration(
+           color: Colors.white,
+           image: DecorationImage(
+             image: AssetImage('assets/bg.png'),
+             fit: BoxFit.cover,
+           ),
+         ),
+         child: Column(
+           children: [
+             DrawerHeader(
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: const [
+                   Text(
+                     'My App',
+                     style: TextStyle(
+                       color: Colors.white,
+                       fontSize: 24,
+                     ),
+                   ),
+                   SizedBox(height: 8),
+                   Text(
+                     'Version 1.0.0',
+                     style: TextStyle(
+                       color: Colors.white,
+                       fontSize: 16,
+                     ),
+                   ),
+                 ],
+               ),
+               decoration: const BoxDecoration(
+                 color: Colors.blue,
+               ),
+             ),
+             Expanded(
+               child: ListView(
+                 padding: EdgeInsets.zero,
+                 children: [
+                   ListTile(
+                     leading: const Icon(Icons.home),
+                     title: const Text('Home'),
+                     onTap: () {
+                       // do something when Home is selected
+                     },
+                   ),
+                   const Divider(),
+                   ListTile(
+                     leading: const Icon(Icons.settings),
+                     title: const Text('Settings'),
+                     onTap: () {
+                       // do something when Settings is selected
+                     },
+                   ),
+                   ListTile(
+                     leading: const Icon(Icons.help),
+                     title: const Text('Help & feedback'),
+                     onTap: () {
+                       // do something when Help & feedback is selected
+                     },
+                   ),
+                   const Divider(),
+                   ListTile(
+                     leading: const Icon(Icons.exit_to_app),
+                     title: const Text('Logout'),
+                     onTap: () {
+                       // do something when Logout is selected
+                     },
+                   ),
+                 ],
+               ),
+             ),
+           ],
+         ),
+       ),
+     ),
+       body: Builder(
           builder: (BuildContext context) {
             final Size screenSize = MediaQuery.of(context).size;
             return Container(
