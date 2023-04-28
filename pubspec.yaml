@@ -25,6 +25,7 @@ dependencies:
   logger: ^1.0.0
   rive: ^0.10.4
   shared_preferences: ^2.0.6
+  ionicons: ^0.2.2
   
 
 dev_dependencies:

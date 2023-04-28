@@ -61,7 +61,7 @@ class Drawert extends StatelessWidget {
                       // do something when Home is selected
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyApp()),
+                        MaterialPageRoute(builder: (context) => const MyApp()),
                       );
                     },
                   ),
@@ -76,7 +76,22 @@ class Drawert extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DeveloperPage()),
+                            builder: (context) => const DeveloperPage()),
+                      );
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.code,
+                      color: Color.fromRGBO(38, 8, 173, 0.69),
+                    ),
+                    title: const Text('Developer'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DeveloperPage()),
                       );
                     },
                   ),

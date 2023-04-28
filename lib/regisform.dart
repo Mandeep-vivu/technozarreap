@@ -451,66 +451,66 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           },
                         ),
                         const SizedBox(height: 16.0),
-                        DropdownButtonFormField<int>(
-                          decoration: InputDecoration(
-                            labelText: 'Course Year',
-                            labelStyle: const TextStyle(
-                              color: Colors.purple,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                width: 2.0,
-                                color: Colors.blue,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                width: 2.0,
-                                color: Colors.purple,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                width: 2.0,
-                                color: Colors.red,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                width: 2.0,
-                                color: Colors.red,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Course Year',
+                          labelStyle: const TextStyle(
+                            color: Colors.purple,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          style: const TextStyle(color: Colors.purple),
-                          value: _courseYear,
-                          onChanged: (value) {
-                            setState(() {
-                              _courseYear = value!;
-                            });
-                          },
-                          items: [1, 2, 3, 4]
-                              .map<DropdownMenuItem<int>>((int value) {
-                            return DropdownMenuItem<int>(
-                              value: value,
-                              child: Text('$value'),
-                            );
-                          }).toList(),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              width: 2.0,
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              width: 2.0,
+                              color: Colors.purple,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              width: 2.0,
+                              color: Colors.red,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              width: 2.0,
+                              color: Colors.red,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
                         ),
-                        const SizedBox(height: 16.0),
+                        style: const TextStyle(color: Colors.purple),
+                        enabled: false,
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter course year';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            _courseYear = int.tryParse(value) ?? 0;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
                         const Text(
                           'Events you added to register:',
                           style: TextStyle(
