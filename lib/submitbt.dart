@@ -30,7 +30,7 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Row(
-            children: [
+            children: const [
               Icon(
                 Icons.check_circle,
                 color: Colors.white,
@@ -47,7 +47,7 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
           ),
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -58,14 +58,14 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
         SnackBar(
           content: Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.error,
                 color: Colors.white,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'Failed to send registration data! Response status code: ${response.statusCode}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                 ),
@@ -74,7 +74,7 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
           ),
           backgroundColor: Colors.red,
           behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -86,14 +86,14 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
       SnackBar(
         content: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.error,
               color: Colors.white,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               'Error sending registration data: $error',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
               ),
@@ -102,7 +102,7 @@ Future<void> sendRegistrationData(List<String> addedToCartTitles, BuildContext c
         ),
         backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
