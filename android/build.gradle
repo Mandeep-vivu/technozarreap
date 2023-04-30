@@ -11,6 +11,16 @@ buildscript {
     }
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+// android {
+//   ndkVersion "25.1.8937393"
+// }
+
 allprojects {
     repositories {
         google()
