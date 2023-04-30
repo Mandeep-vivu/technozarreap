@@ -3,6 +3,7 @@ import 'package:technozarre/developer.dart';
 import 'package:technozarre/eventpage.dart';
 import 'package:technozarre/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:technozarre/website.dart';
 
 class Drawert extends StatelessWidget {
   const Drawert({
@@ -68,15 +69,15 @@ class Drawert extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     leading: const Icon(
-                      Icons.code,
+                      Icons.web_rounded,
                       color: Color.fromRGBO(38, 8, 173, 0.69),
                     ),
-                    title: const Text('Developer'),
+                    title: const Text('Visit Website'),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const DeveloperPage()),
+                            builder: (context) => WebsiteLaunchPage()),
                       );
                     },
                   ),

@@ -19,14 +19,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  url_launcher: ^6.1.10
+
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   logger: ^1.0.0
   rive: ^0.10.4
   shared_preferences: ^2.0.6
   ionicons: ^0.2.2
-  
+  url_launcher: ^6.1.10
+  webview_flutter: ^4.2.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,8 @@ dev_dependencies:
 
 
   flutter_lints: ^2.0.0
+
+
   
  
 
@@ -51,7 +54,7 @@ flutter:
     - assets/bg.png
     - assets/favicon.png
     - assets/bgg12.gif
-    - assets/login.riv
+  
     - assets/posters/Board Meeting.png
     - assets/posters/Animie Quiz.jpg
     - assets/posters/Autocad.png
@@ -80,6 +83,7 @@ flutter:
     - assets/posters/tresure hunt.png
     - assets/posters/structural engineering.png
     - assets/hl.png
+    - assets/login.riv
 
   # To add assets to your application, add an assets section, like this:
   # assets:
