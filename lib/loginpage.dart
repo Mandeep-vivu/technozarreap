@@ -281,44 +281,56 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () async {
+
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        ElevatedButton(onPressed: (){
+                          Navigator.pushReplacement(context,MaterialPageRoute(
+                            builder:(context)=> MyApp()
+                          ),);
+                        }, child: Text("sample view")),
+                        Spacer(),
+                        ElevatedButton(
+                          onPressed: () async {
 // Call the login function when the login button is pressed
-                        isChecking?.change(false);
-                        isHandsUp?.change(false);
-                        var response = await login(
-                            emailController.text, passController.text);
-                        if (response != null) {
-                          successTrigger?.fire();
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          prefs.setBool('isLoggedIn', true);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MyApp()),
-                          );
-                        } else {
+                            isChecking?.change(false);
+                            isHandsUp?.change(false);
+                            var response = await login(
+                                emailController.text, passController.text);
+                            if (response != null) {
+                              successTrigger?.fire();
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool('isLoggedIn', true);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MyApp()),
+                              );
+                            } else {
 // Show an error message
-                          failTrigger?.fire();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                'Invalid email or password',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              backgroundColor: Colors.red,
-                              duration: const Duration(seconds: 3),
-                              action: SnackBarAction(
-                                label: 'OK',
-                                textColor: Colors.blue,
-                                onPressed: () {},
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                      child: const Text('Login'),
+                              failTrigger?.fire();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Invalid email or password',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  duration: const Duration(seconds: 3),
+                                  action: SnackBarAction(
+                                    label: 'OK',
+                                    textColor: Colors.blue,
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
+                      ],
                     ),
                   ],
                 ),
